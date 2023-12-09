@@ -16,27 +16,6 @@ export const getCategories = createAsyncThunk(
     }
 );
 
-export const updateCategoriesById = createAsyncThunk(
-    "categories/updateCategoriesById",
-    async (_, thunkAPI) => {
-
-        const res1 = await axios(`${BASE_URL}/categories/1`)
-
-        const res2 = await axios(`${BASE_URL}/categories/8`)
-
-        return res1.data
-        });
-
-export const deleteCategoriesById = createAsyncThunk(
-    "categories/deleteCategoriesById",
-    async (_, thunkAPI) => {
-        for (let i = 9; i <= 146; i++) {
-            const res = await axios(`${BASE_URL}/categories/i`);
-        }
-    }
-);
-
-
 const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
