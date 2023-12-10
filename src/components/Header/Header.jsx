@@ -10,16 +10,17 @@ import logo from '../../images/logo.svg'
 import avatar from '../../images/avatar.jpg'
 import {useDispatch, useSelector} from "react-redux";
 import {toggleForm} from "../../features/user/userSlice";
-import {useGetProductQuery, useGetProductsQuery} from "../../features/api/apiSlice";
+import {useGetProductsQuery} from "../../features/api/apiSlice";
 
 
 const Header = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {currentUser} = useSelector(({user}) => user)
+    const {currentUser, cart} = useSelector(({user}) => user)
 
     const [searchValue, setSearchValue] = useState('')
+
     const [values, setValues] = useState({name: "Guest", avatar: avatar})
 
     const {data, isLoading} = useGetProductsQuery({title: searchValue})
@@ -101,7 +102,7 @@ const Header = () => {
                         <svg className={styles['icon-cart']}>
                             <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`}></use>
                         </svg>
-                        <span className={styles.count}>2</span>
+                        {!!cart.length && (<span className={styles.count}>{cart.length}</span>)}
                     </Link>
                 </div>
             </div>
